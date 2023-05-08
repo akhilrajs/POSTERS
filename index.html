@@ -29,10 +29,10 @@
             }
             results += '</tr>';
             for (const item of data) {
-                let found = true;
+                let found = false;
                 for (const [key, value] of Object.entries(item)) {
-                    if (!value.toString().includes(keyword)) {
-                        found = false;
+                    if (value.toString().includes(keyword)) {
+                        found = true;
                         break;
                     }
                 }
