@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSON Search</title>
+    <title>Research MD Database</title>
     <style>
+        body {
+            text-align: center;
+        }
         table {
             border-collapse: collapse;
+            margin: 0 auto;
         }
         th, td {
             border: 1px solid black;
@@ -13,7 +17,7 @@
     </style>
 </head>
 <body>
-    <h1>JSON Search</h1>
+    <h1>Research MD Database</h1>
     <input type="text" id="search" placeholder="Enter search keyword">
     <button onclick="search()">Search</button>
     <div id="results"></div>
@@ -29,10 +33,10 @@
             }
             results += '</tr>';
             for (const item of data) {
-                let found = false;
+                let found = true;
                 for (const [key, value] of Object.entries(item)) {
-                    if (value.toString().includes(keyword)) {
-                        found = true;
+                    if (!value.toString().includes(keyword)) {
+                        found = false;
                         break;
                     }
                 }
