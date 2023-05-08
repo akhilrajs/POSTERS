@@ -6,7 +6,7 @@
         body {
             text-align: center;
             font-family: Arial, Helvetica, sans-serif;
-            background-image: url('https://img.freepik.com/free-photo/white-concrete-wall_53876-92803.jpg?w=996&t=st=1683540212~exp=1683540812~hmac=91692b0e7378c252eeb2b801de16472660f14c72bf8871055d69d6896523a547');
+            background-image: url('https://img.freepik.com/free-vector/geometric-background-concept_23-2148540971.jpg?w=1060&t=st=1683540961~exp=1683541561~hmac=c113dcf998424e475835ad646c3838cc9457b7b3b17435400360f6399acc101a');
             background-size: cover;
         }
         table {
@@ -48,7 +48,7 @@
             for (const item of data) {
                 let found = false;
                 for (const [key, value] of Object.entries(item)) {
-                    if (value.toString().includes(keyword)) {
+                    if (value.toString().toLowerCase().includes(keyword.toLowerCase())) {
                         found = true;
                         break;
                     }
