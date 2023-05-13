@@ -27,12 +27,22 @@
         tr:hover {
             background-color: #ddd;
         }
+        input[type=text] {
+            width: 50%;
+            padding: 12px 20px;
+            margin: 8px auto;
+            display: block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 <body>
     <h1>Research MD Database</h1>
-    <input type="text" id="search" placeholder="Enter search keyword">
+    <input type="text" id="search" placeholder="Enter search keyword" list="search-suggestions">
     <button onclick="search()">Search</button>
+    <datalist id="search-suggestions"></datalist>
     <div id="results"></div>
 
     <script>
@@ -40,6 +50,17 @@
             const keyword = document.getElementById('search').value;
             const response = await fetch('data.json');
             const data = await response.json();
+            let suggestions = '';
+            for (const item of data) {
+                for (const [key, value] of Object.entries(item)) {
+                    if (value.toString().toLowerCase().includes(keyword.toLowerCase())) {
+                        suggestions += `<option value="${value}"/>`;
+                        break;
+                    }
+                }
+            }
+            document.getElementById('search-suggestions').innerHTML = suggestions;
+            
             let results = '<table><tr>';
             for (const key of Object.keys(data[0])) {
                 results += `<th>${key}</th>`;
