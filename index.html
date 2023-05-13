@@ -47,6 +47,23 @@
 
     <script>
         async function search() {
+    const keyword = document.getElementById('search').value;
+    const response = await fetch('data.json');
+    const data = await response.json();
+    const suggestions = document.getElementById('suggestions');
+    suggestions.innerHTML = '';
+    for (const item of data) {
+        for (const [key, value] of Object.entries(item)) {
+            if (value.toString().toLowerCase().includes(keyword.toLowerCase())) {
+                const option = document.createElement('option');
+                option.text = value;
+                suggestions.add(option);
+            }
+        }
+    }
+}
+
+        async function search() {
             const keyword = document.getElementById('search').value;
             const response = await fetch('data.json');
             const data = await response.json();
